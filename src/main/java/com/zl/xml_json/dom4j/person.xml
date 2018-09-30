@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<people >
+	<person personid="E01">
+		<name>Tom</name>
+		<address>shanghai</address>
+		<tel>010 998765</tel>
+		<fax>010 998765</fax>
+		<email>tom.everywher.com</email>
+	</person>
+</people>
