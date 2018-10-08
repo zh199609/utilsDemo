@@ -36,8 +36,8 @@ public class DesTest {
         }
     }
 
-    private static byte[] desKey;
-    private static String key = "zhanglei";//必须8位
+    //private static byte[] desKey;
+    private static final String key = "lei66666";//必须8位
 
     public static String decrypt(String message) throws Exception {
 
