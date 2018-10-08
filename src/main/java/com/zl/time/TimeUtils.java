@@ -156,6 +156,18 @@ public class TimeUtils {
 	
 	/**
 	 * 
+	 * @Title: getFirstDayOfMonth   
+	 * @Description:根据日期返回当月的弟一天的日期  
+	 * @param localDate
+	 * @return
+	 */
+	public static LocalDate getFirstDayOfMonth(LocalDate localDate) {
+	    return localDate.with(TemporalAdjusters.firstDayOfMonth());
+	}
+	
+	
+	/**
+	 * 
 	 * @Title: getLastDayOfMonth   
 	 * @Description:根据日期返回当月的最后一天的日期 
 	 * @param localDate
