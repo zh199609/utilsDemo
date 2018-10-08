@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 /**
  * 
  * @author	zhanglei
@@ -141,7 +143,25 @@ public class TimeUtils {
 		return epochSecond;
 	}
 	
+	/**
+	 * 
+	 * @Title: getMonthDays   
+	 * @Description:根据日期返回当月的天数
+	 * @param localDate
+	 * @return
+	 */
+	public static int getMonthDays(LocalDate localDate) {
+	    return localDate.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth();
+	}
 	
-	
-	
+	/**
+	 * 
+	 * @Title: getLastDayOfMonth   
+	 * @Description:根据日期返回当月的最后一天的日期 
+	 * @param localDate
+	 * @return
+	 */
+	public static LocalDate getLastDayOfMonth(LocalDate localDate) {
+	    return localDate.with(TemporalAdjusters.lastDayOfMonth());
+	}
 }
