@@ -1,5 +1,6 @@
 package com.zl.time;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -7,6 +8,10 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiConsumer;
 /**
  * 
  * @author	zhanglei
@@ -176,4 +181,17 @@ public class TimeUtils {
 	public static LocalDate getLastDayOfMonth(LocalDate localDate) {
 	    return localDate.with(TemporalAdjusters.lastDayOfMonth());
 	}
+	public static void main(String[] args) {
+        Map<Object,Object> map = new HashMap<>();
+        
+        map.put(1, "张磊");
+        map.put(2, "张磊");
+        map.put(3, "张磊");
+        System.out.println(Instant.now().compareTo(Instant.now().plusMillis(100)));
+        
+        map.forEach((key,value)->{
+            System.out.println(key+"::"+value);
+        });
+        
+    }
 }
