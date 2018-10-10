@@ -192,6 +192,7 @@ public class TimeUtils {
         map.forEach((key,value)->{
             System.out.println(key+"::"+value);
         });
-        System.out.println("时间："+LocalDate.now());
+        //System.out.println("时间："+LocalDate.now());
     }
+	
 }
