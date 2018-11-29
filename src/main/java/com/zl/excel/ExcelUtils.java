@@ -64,6 +64,7 @@ public class ExcelUtils {
 		cell.setCellValue(title);
 		// 合并单元格CellRangeAddress构造参数依次表示起始行，截至行，起始列， 截至列
 		sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 6));
+//		sheet.setDefaultColumnStyle(column, style);按列设置样式   
 		return sheet;
 	}
 	
