@@ -15,8 +15,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.afterturn.easypoi.entity.vo.NormalExcelConstants;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
@@ -29,10 +33,11 @@ import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
  * @date 2018年8月24日
  * @Description
  */
-@RestController
+@Controller
 public class ExcelController {
 
     @RequestMapping("/test")
+    @ResponseBody
     public String test(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 告诉浏览器用什么软件可以打开此文件
         //response.setHeader("content-Type", "application/vnd.ms-excel");
@@ -75,5 +80,26 @@ public class ExcelController {
 		System.out.println("成功");*/
         return "SUCCESS";
         //workbook.write(response.getOutputStream());
+    }
+
+    //注解结合springmvc的view进行导出  更快捷
+    @RequestMapping(value = "/viewTest")
+    public String test2(ModelMap map) {
+        List<Object> list = new ArrayList<>();
+        Date date = new Date();
+        for (int i = 0; i < 100; i++) {
+            User user = new User();
+            user.setName("用户" + i + "号");
+            user.setSex("1");
+            user.setBirthday(date);
+            list.add(user);
+        }
+        ExportParams exportParams = new ExportParams("view导出", "view导出sheet", ExcelType.XSSF);
+        exportParams.setFreezeCol(2);
+        map.put(NormalExcelConstants.DATA_LIST, list); // 数据集合
+        map.put(NormalExcelConstants.CLASS, User.class);//导出实体
+        map.put(NormalExcelConstants.PARAMS, exportParams);//参数
+        map.put(NormalExcelConstants.FILE_NAME, "view文件.xlsx");//文件名称
+        return NormalExcelConstants.EASYPOI_EXCEL_VIEW;//View名称
     }
 }
