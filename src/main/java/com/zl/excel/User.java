@@ -14,17 +14,17 @@ import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
  * @date	2018年8月24日
  * @Description	
  */
-@ExcelTarget("student")
+/*@ExcelTarget("student")*/
 public class User implements Serializable{
 	
 	
-	@Excel(name = "姓名_teacher", orderNum = "0")
+	@Excel(name = "姓名")
 	private String name;
 	
-	@Excel(name = "性别", replace = {"男_1", "女_2"}, orderNum = "2")
+	@Excel(name = "性别", replace = {"男_1", "女_2"})
 	private String sex;
 	
-	@Excel(name = "生日", exportFormat = "yyyy-MM-dd", orderNum = "1",width=20)
+	@Excel(name = "生日", exportFormat = "yyyy-MM-dd",width=20)
 	private Date birthday;
 
 	public String getName() {

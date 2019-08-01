@@ -90,16 +90,14 @@ public class ExcelUtils {
 
     private static void downLoad(Workbook workbook, HttpServletResponse response) {
         try {
-            ServletOutputStream outputStream = response.getOutputStream();
-            workbook.write(outputStream);
+            ServletOutputStream out = response.getOutputStream();
+            workbook.write(out);
+            out.flush();
+            out.close();
             workbook.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    public static void main(String[] args) {
-        Date date = new Date();
-    }
 }

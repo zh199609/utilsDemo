@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.afterturn.easypoi.entity.vo.NormalExcelConstants;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -49,13 +50,14 @@ public class ExcelController {
         List<User> list = new ArrayList();
         list.add(new User("王五", "1", new Date()));
         list.add(new User("大铭", "1", new Date()));
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("计算机一班学生","学生",ExcelType.XSSF),
+                User.class, list);
 
-
-        List<User> list1 = new ArrayList();
+        Cell cell = workbook.getSheetAt(0).getRow(1).getCell(0);
+        System.out.println("内容："+cell.getStringCellValue());
+       /* List<User> list1 = new ArrayList();
         list1.add(new User("大铭", "1", new Date()));
         list1.add(new User("王五", "1", new Date()));
-		/*Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("计算机一班学生","学生"),
-	            User .class, list);*/
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("title", new ExportParams("计算机一班学生", "学生", ExcelType.XSSF));
@@ -70,16 +72,15 @@ public class ExcelController {
 
         List<Map<String, Object>> list2 = new ArrayList<>();
         list2.add(map);
-        list2.add(map2);
+        list2.add(map2);*/
+        //Workbook workbook = ExcelExportUtil.exportExcel(list2, ExcelType.XSSF);
 
-        Workbook workbook = ExcelExportUtil.exportExcel(list2, ExcelType.XSSF);
         ExcelUtils.exportExcel(workbook, "我的学生.xlsx", response, request);
-		/*OutputStream out = new FileOutputStream(new File("D:\\22.xlsx"));
+        /*OutputStream out = new FileOutputStream(new File("D:\\22.xlsx"));
 		workbook.write(out);
-		out.close();
-		System.out.println("成功");*/
+		out.close();*/
+		System.out.println("成功");
         return "SUCCESS";
-        //workbook.write(response.getOutputStream());
     }
 
     //注解结合springmvc的view进行导出  更快捷
